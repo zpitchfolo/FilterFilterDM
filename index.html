@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f1">
+  <title>Filter — Social Inbox</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <button class="brand sidebar-brand" id="sidebar-toggle" title="Collapse sidebar" aria-label="Collapse sidebar" aria-expanded="true"><span class="brand-mark">f</span><span>filter<span class="brand-dot">.</span></span></button>
+      <p class="nav-label">WORKSPACE</p>
+      <nav class="primary-nav">
+        <button class="nav-item active" data-view="overview" title="Overview"><span class="nav-icon">◫</span>Overview</button>
+        <button class="nav-item" data-view="comments" title="Comments"><span class="nav-icon">◌</span>Comments<span class="nav-count" id="comment-nav-count">0</span></button>
+        <button class="nav-item" data-view="messages" title="Direct messages"><span class="nav-icon">✳</span>Direct messages<span class="nav-count" id="dm-nav-count">0</span></button>
+      </nav>
+      <div class="sidebar-bottom"><div class="local-badge"><span></span>Local prototype</div><div class="profile"><div class="avatar avatar-you">J</div><div><strong>Your inbox</strong><small>Private workspace</small></div><span class="more">···</span></div></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar"><div class="crumb"><button class="crumb-home" data-view="overview" aria-label="Return to overview">Workspace</button><span class="slash">/</span><strong id="crumb-current">Overview</strong></div><div class="top-actions"><button class="icon-button" id="reset-button" title="Reset sample state" aria-label="Reset sample state">↻</button></div></header>
+      <section class="page-view" id="overview-view">
+        <div class="date-strip"><span class="date-dot"></span><span>SATURDAY, OCTOBER 31</span></div>
+        <div class="stat-grid">
+          <button class="stat-card stat-link" data-view="comments" aria-label="Open comments inbox"><div class="stat-top"><span>Comments collected</span><span class="stat-icon lilac">◌</span></div><strong id="stat-comments">0</strong><small>Across your recent posts<span class="stat-inline-count"><b id="stat-comments-worth">0</b> worth a look</span></small></button>
+          <button class="stat-card stat-link" data-view="messages" aria-label="Open direct messages inbox"><div class="stat-top"><span>Direct messages</span><span class="stat-icon peach">✳</span></div><strong id="stat-dms">0</strong><small>Across your recent conversations<span class="stat-inline-count dm-count"><b id="stat-dms-worth">0</b> Needs a reply</span></small></button>
+        </div>
+        <div class="dashboard-grid">
+          <section class="panel briefing-panel"><div class="panel-heading"><div><p class="eyebrow">YOUR DAILY BRIEFING</p><h2>The things worth knowing.</h2></div><span class="sparkle-icon">✳</span></div><p class="briefing-intro">A quick read from your latest activity.</p><div id="briefing-list" class="briefing-list"></div><div class="briefing-links"><button class="text-link" data-view="comments">Explore comments <span>↗</span></button><button class="text-link" data-view="messages">Explore DMs <span>↗</span></button></div></section>
+          <section class="panel topics-panel"><div class="panel-heading"><div><p class="eyebrow">CONVERSATION PULSE</p><h2>What’s coming up.</h2></div><span class="topic-period">SAMPLE</span></div><div id="topic-list" class="topic-list"></div><div class="panel-note"><span>✳</span><span>Sample insights from fictional messages. Nothing is being imported.</span></div></section>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">A FEW THAT STOOD OUT</p><h2>Recent highlights</h2></div></div>
+        <div class="highlight-grid" id="highlight-list"></div>
+      </section>
+
+      <section class="page-view inbox-view hidden" id="inbox-view">
+        <div class="inbox-title-row"><div><p class="eyebrow" id="inbox-eyebrow">YOUR COMMUNITY</p><h1 id="inbox-title">Comments</h1><p class="subhead" id="inbox-subtitle"></p></div><div class="inbox-heading-actions"><button class="action-button" id="manage-categories">Manage categories</button><div class="inbox-total"><strong id="inbox-total-count">0</strong><span>items</span></div></div></div>
+        <div class="inbox-toolbar"><div class="filter-tabs" id="filter-tabs" role="group" aria-label="Filter messages"></div><div class="inbox-controls"><label class="select-control"><span>Source app</span><select id="source-filter" aria-label="Filter by source app"><option value="all">All apps</option></select></label><label class="select-control"><span>Message type</span><select id="type-filter" aria-label="Filter by message type"><option value="all">All types</option></select></label><label class="select-control"><span>Tone</span><select id="tone-filter" aria-label="Filter by tone"><option value="all">All tones</option></select></label><label class="select-control"><span>Your tags</span><select id="tag-filter" aria-label="Filter by your tags"><option value="all">All tags</option></select></label><label class="select-control"><span>Sort</span><select id="sort-order" aria-label="Sort messages"><option value="newest">Newest</option><option value="oldest">Oldest</option></select></label><label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Search messages…" aria-label="Search messages"></label></div></div>
+        <div class="inbox-layout"><div class="message-list-wrap"><div class="list-label"><span id="list-label">ALL COMMENTS</span><span id="result-count">0</span></div><div id="message-list" class="message-list"></div></div><article id="detail-panel" class="detail-panel"><div class="detail-empty"><span>✳</span><h3>Pick a message to explore</h3><p>See the original, its context, and why it caught your eye.</p></div></article></div>
+      </section>
+      <footer class="app-footer"><span>LOCAL SAMPLE DATA <i></i> NO ACCOUNTS CONNECTED</span></footer>
+    </main>
+  </div>
+  <dialog class="category-dialog" id="category-dialog" aria-labelledby="category-dialog-title">
+    <div class="category-dialog-heading"><div><p class="eyebrow">FUTURE CLASSIFICATION GUIDANCE</p><h2 id="category-dialog-title">Manage categories</h2></div><button class="icon-button" id="close-category-dialog" aria-label="Close category editor">×</button></div>
+    <p class="category-dialog-intro">Edit category names and notes for future AI guidance. This prototype does not use AI yet, and these changes won’t alter existing sample messages.</p>
+    <div id="category-groups" class="category-groups"></div>
+    <div class="category-dialog-actions"><button class="action-button" id="cancel-category-edit">Cancel</button><button class="action-button primary-action" id="save-category-edit">Save categories</button></div>
+  </dialog>
+  <dialog class="report-dialog" id="report-dialog" aria-labelledby="report-dialog-title">
+    <form id="report-form">
+      <div class="category-dialog-heading"><div><p class="eyebrow">LOCAL MODERATION NOTE</p><h2 id="report-dialog-title">Report message</h2></div><button type="button" class="icon-button" id="close-report-dialog" aria-label="Close report form">×</button></div>
+      <p class="category-dialog-intro">Save a report note for your records. This does not report the message to its platform.</p>
+      <label class="report-field"><span>Reason</span><select id="report-reason" required><option value="">Choose a reason</option><option>Spam</option><option>Scam or phishing</option><option>Harassment or threats</option><option>Inappropriate content</option><option>Other</option></select></label>
+      <label class="report-field"><span>Notes (optional)</span><textarea id="report-notes" rows="4" maxlength="500" placeholder="Add context for yourself…"></textarea></label>
+      <div class="category-dialog-actions"><button type="button" class="action-button" id="cancel-report">Cancel</button><button type="submit" class="action-button primary-action">Save report locally</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="sample-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
